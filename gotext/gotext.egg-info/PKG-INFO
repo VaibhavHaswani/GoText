@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: gotext
+Version: 1.0
+Summary: GoText is a universal text extraction and preprocessing tool for python which supportss wide variety of document formats.
+Home-page: https://github.com/VaibhavHaswani/GoText
+Author: Vaibhav Haswani
+Author-email: vaibhavhaswani@gmail.com
+License: UNKNOWN
+Download-URL: https://github.com/VaibhavHaswani/GoText/archive/refs/tags/v1.0.tar.gz
+Project-URL: Bug Tracker, https://github.com/VaibhavHaswani/GoText/issues
+Description: # GoText v1.0
+        GoText is a universal text extraction and preprocessing tool for python which supportss wide variety of document formats.
+        
+Keywords: text extraction,text preprocessing,document extraction,text utils
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GPL 3.0 License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
