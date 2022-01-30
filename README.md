@@ -24,3 +24,7 @@ go_obj=GoDocument(docs_dir=docs_dir)
 print(go_obj._text) #returns a list of texts extracted from all the documents
 print(go_obj.preprocess()) #preprocess documents and returns a list of preprocessed text
 ```
+
+## Feedback / Queries
+
+For any queries or feedback feel free to write to vaibhavhaswani@gmail.com
