@@ -5,7 +5,26 @@ from .stopwords import stop_words
 import re
 
 class GoDocument:
-    
+    """GoText Document Constructor
+       
+       arguments-
+
+       doc_path : specify document path incase of single document
+       docs_dir : specify documents directory incase of multiple documents in a directory
+
+       attributes-
+
+       _supported: returns list of all the supported document formats
+       _docs: returns list of documents path
+       _text: returns extacted text of documents
+       _preprocessed: returns list of preprocessed text, constructed after .preprocess() method call
+
+       methods- 
+
+       preprocess() : preprocess the extracted text and returns a list of preprocessed text
+       preprocess(stopwords=True) : preprocess the extracted text as well as remove the stopwords and returns a list of preprocessed text
+    """
+
     _supported=["doc" , "docx" , "dot" , "dotx" , "docm" , "pdf", "pptx" , "pptm" , "txt"]
     _stop_words=stop_words
 
