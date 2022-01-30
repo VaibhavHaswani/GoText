@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="gotext",
-    version="1.0",
+    version="0.9",
     author="Vaibhav Haswani",
     author_email="vaibhavhaswani@gmail.com",
     description="GoText is a universal text extraction and preprocessing tool for python which supportss wide variety of document formats.",
@@ -22,10 +22,12 @@ setuptools.setup(
       ],
     classifiers=[
         "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: GPL 3.0 License",
+        "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
         "Operating System :: OS Independent",
     ],
-    package_dir={"": "gotext"},
-    packages=setuptools.find_packages(where="gotext"),
+    packages=[
+        'gotext',
+        ],
     python_requires=">=3.6",
+    zip_safe=False,
 )

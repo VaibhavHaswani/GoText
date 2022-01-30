@@ -1,7 +1,7 @@
 import os
 from mimetypes import init
 import textractplus as tp
-from stopwords import stop_words
+from .stopwords import stop_words
 import re
 
 class GoDocument:

@@ -1,6 +1,11 @@
 README.md
 setup.cfg
 setup.py
+./gotext/gotext.egg-info/PKG-INFO
+./gotext/gotext.egg-info/SOURCES.txt
+./gotext/gotext.egg-info/dependency_links.txt
+./gotext/gotext.egg-info/requires.txt
+./gotext/gotext.egg-info/top_level.txt
 gotext/gotext.egg-info/PKG-INFO
 gotext/gotext.egg-info/SOURCES.txt
 gotext/gotext.egg-info/dependency_links.txt
