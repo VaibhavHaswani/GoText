@@ -32,8 +32,8 @@ class GoDocument:
         if doc_path and docs_dir:
             raise Exception("GoConstructorError: Please Specify only one argument. (doc_path or docs_dir)")
         if doc_path:
-            self._docs=list(doc_path)
-            self._text=list(self._extract(doc_path))
+            self._docs=[doc_path]
+            self._text=[self._extract(doc_path)]
         if docs_dir:
             self._docs=list(map(lambda f:os.path.join(docs_dir,f),os.listdir(docs_dir)))
             self._text=list(map(self._extract,self._docs))
