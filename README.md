@@ -1,2 +1,2 @@
-# GoText v0.1
+# GoText v1.0
 GoText is a universal text extraction and preprocessing tool for python which supportss wide variety of document formats.
