@@ -44,13 +44,14 @@ class GoDocument:
         return tp.process(doc_path).decode('utf-8')
 
     def _clean(self,text):
-            text=text.lower()
-            text=re.sub("''"," ",text) 
-            text=re.sub(r'[0-9]', ' ', text)
-            text=re.sub("_"," ",text)
-            text=re.sub("(\\W)+"," ",text)
-            text=re.sub('(\\b[a-z] \\b|\\b [a-z]\\b)','',text)
-            return text
+        """cleans the document"""
+        text=text.lower()
+        text=re.sub("''"," ",text) 
+        text=re.sub(r'[0-9]', ' ', text)
+        text=re.sub("_"," ",text)
+        text=re.sub("(\\W)+"," ",text)
+        text=re.sub('(\\b[a-z] \\b|\\b [a-z]\\b)','',text)
+        return text
 
     def _remove_stopword(self,text):
         text_tokens=text.split(' ')
@@ -60,6 +61,7 @@ class GoDocument:
         return " ".join(list(filter(lambda val:len(val)>3, text_tokens)))
 
     def preprocess(self,stopwords=False):
+        """preprocess the godocument"""
         self._preprocessed=list(map(self._clean,self._text))
         if stopwords:
             self._preprocessed=list(map(self._remove_stopword,self._preprocessed))
