@@ -75,7 +75,7 @@ class GoDocument:
 
 class GoMetrics:
 
-    @classmethod
+    @staticmethod
     def jaccard_similarity(text_a,text_b):
         '''returns the Jaccard Similarity score of two texts'''
         words_doc1 = set(text_a.lower().split()) 
@@ -88,7 +88,7 @@ class GoMetrics:
             
         return float(len(intersection)) / len(union)
 
-    @classmethod
+    @staticmethod
     def cosine_similarity(text_a,text_b):
         "returns Cosine Similarity score of two texts"
         vector1 = GoMetrics.text_to_vector(text_a)
@@ -97,7 +97,7 @@ class GoMetrics:
         cosine = GoMetrics.get_cosine(vector1, vector2)
         return cosine
 
-    @classmethod
+    @staticmethod
     def get_cosine(vec1, vec2):
         intersection = set(vec1.keys()) & set(vec2.keys())
         numerator = sum([vec1[x] * vec2[x] for x in intersection])
@@ -110,8 +110,8 @@ class GoMetrics:
             return 0.0
         else:
             return float(numerator) / denominator
-
-    @classmethod
+            
+    @staticmethod
     def text_to_vector(text):
         WORD = re.compile(r"\w+")
         words = WORD.findall(text)
