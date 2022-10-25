@@ -3,6 +3,10 @@ from mimetypes import init
 import textractplus as tp
 from .stopwords import stop_words
 import re
+import math
+from collections import Counter
+
+
 
 class GoDocument:
     """GoText Document Constructor
@@ -66,4 +70,52 @@ class GoDocument:
         if stopwords:
             self._preprocessed=list(map(self._remove_stopword,self._preprocessed))
         return self._preprocessed
+
+
+
+class GoMetrics:
+
+    @staticmethod
+    def jaccard_similarity(text_a,text_b):
+        '''returns the Jaccard Similarity score of two texts'''
+        words_doc1 = set(text_a.lower().split()) 
+        words_doc2 = set(text_b.lower().split())
+        # Find the intersection of words list of text A & text B
+        intersection = words_doc1.intersection(words_doc2)
+
+        # Find the union of words list of text a & text b
+        union = words_doc1.union(words_doc2)
+            
+        return float(len(intersection)) / len(union)
+
+    @staticmethod
+    def cosine_similarity(text_a,text_b):
+        "returns Cosine Similarity score of two texts"
+        vector1 = GoMetrics.text_to_vector(text_a)
+        vector2 = GoMetrics.text_to_vector(text_b)
+
+        cosine = GoMetrics.get_cosine(vector1, vector2)
+        return cosine
+
+    @staticmethod
+    def get_cosine(vec1, vec2):
+        intersection = set(vec1.keys()) & set(vec2.keys())
+        numerator = sum([vec1[x] * vec2[x] for x in intersection])
+
+        sum1 = sum([vec1[x] ** 2 for x in list(vec1.keys())])
+        sum2 = sum([vec2[x] ** 2 for x in list(vec2.keys())])
+        denominator = math.sqrt(sum1) * math.sqrt(sum2)
+
+        if not denominator:
+            return 0.0
+        else:
+            return float(numerator) / denominator
+            
+    @staticmethod
+    def text_to_vector(text):
+        WORD = re.compile(r"\w+")
+        words = WORD.findall(text)
+        return Counter(words)
+        
+
         

@@ -1,3 +1,3 @@
-from .gotext import GoDocument
+from .gotext import *
 
 VERSION = "0.9"
