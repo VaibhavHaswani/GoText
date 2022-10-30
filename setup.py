@@ -19,6 +19,7 @@ setuptools.setup(
     keywords = ['text extraction','text preprocessing','document extraction','text utils'],   # Keywords that define your package best
     install_requires=[            # I get to this in a second
           'textract-plus',
+          'jiwer'
       ],
     classifiers=[
         "Programming Language :: Python :: 3",

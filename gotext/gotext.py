@@ -5,6 +5,7 @@ from .stopwords import stop_words
 import re
 import math
 from collections import Counter
+from jiwer import wer
 
 
 
@@ -41,6 +42,13 @@ class GoDocument:
         if docs_dir:
             self._docs=list(map(lambda f:os.path.join(docs_dir,f),os.listdir(docs_dir)))
             self._text=list(map(self._extract,self._docs))
+
+    
+    def __getitem__(self,i):
+        return self._text[i]
+
+    def __len__(self):
+        return len(self._text)
         
     def _extract(self,doc_path):
         if not os.path.isfile(doc_path):
@@ -66,14 +74,37 @@ class GoDocument:
 
     def preprocess(self,stopwords=False):
         """preprocess the godocument"""
-        self._preprocessed=list(map(self._clean,self._text))
+        self._text=list(map(self._clean,self._text))
         if stopwords:
-            self._preprocessed=list(map(self._remove_stopword,self._preprocessed))
-        return self._preprocessed
-
+            self._text=list(map(self._remove_stopword,self._text))
+        return self._text
+    
+    def gograms(self,index,n):
+        doc=self._text[index].split()
+        return list(zip(*[doc[i:] for i in range(n)]))
 
 
 class GoMetrics:
+
+    @staticmethod
+    def get_cosine(vec1, vec2):
+        intersection = set(vec1.keys()) & set(vec2.keys())
+        numerator = sum([vec1[x] * vec2[x] for x in intersection])
+
+        sum1 = sum([vec1[x] ** 2 for x in list(vec1.keys())])
+        sum2 = sum([vec2[x] ** 2 for x in list(vec2.keys())])
+        denominator = math.sqrt(sum1) * math.sqrt(sum2)
+
+        if not denominator:
+            return 0.0
+        else:
+            return float(numerator) / denominator
+            
+    @staticmethod
+    def text_to_vector(text):
+        WORD = re.compile(r"\w+")
+        words = WORD.findall(text)
+        return Counter(words)
 
     @staticmethod
     def jaccard_similarity(text_a,text_b):
@@ -98,24 +129,11 @@ class GoMetrics:
         return cosine
 
     @staticmethod
-    def get_cosine(vec1, vec2):
-        intersection = set(vec1.keys()) & set(vec2.keys())
-        numerator = sum([vec1[x] * vec2[x] for x in intersection])
+    def wer(text_a,text_b):
+        return wer(text_a,text_b)
+    
 
-        sum1 = sum([vec1[x] ** 2 for x in list(vec1.keys())])
-        sum2 = sum([vec2[x] ** 2 for x in list(vec2.keys())])
-        denominator = math.sqrt(sum1) * math.sqrt(sum2)
-
-        if not denominator:
-            return 0.0
-        else:
-            return float(numerator) / denominator
-            
-    @staticmethod
-    def text_to_vector(text):
-        WORD = re.compile(r"\w+")
-        words = WORD.findall(text)
-        return Counter(words)
+   
         
 
         
