@@ -28,6 +28,7 @@ class GoDocument:
 
        preprocess() : preprocess the extracted text and returns a list of preprocessed text
        preprocess(stopwords=True) : preprocess the extracted text as well as remove the stopwords and returns a list of preprocessed text
+       gograms() : creates n-grams for the godocument object item
     """
 
     _supported=["doc" , "docx" , "dot" , "dotx" , "docm" , "pdf", "pptx" , "pptm" , "txt"]
@@ -79,12 +80,14 @@ class GoDocument:
             self._text=list(map(self._remove_stopword,self._text))
         return self._text
     
-    def gograms(self,index,n):
-        doc=self._text[index].split()
+    def gograms(self,n,dinx=0):
+        "n : no of grams, dinx : GoDocument Index (required in case of mulitple docs object)"
+        doc=self._text[dinx].split()
         return list(zip(*[doc[i:] for i in range(n)]))
 
 
 class GoMetrics:
+    """GoMetrics Class provide variety of document similarity metrics for your experiments"""
 
     @staticmethod
     def get_cosine(vec1, vec2):
@@ -121,7 +124,7 @@ class GoMetrics:
 
     @staticmethod
     def cosine_similarity(text_a,text_b):
-        "returns Cosine Similarity score of two texts"
+        '''returns Cosine Similarity score of two texts'''
         vector1 = GoMetrics.text_to_vector(text_a)
         vector2 = GoMetrics.text_to_vector(text_b)
 
@@ -130,6 +133,7 @@ class GoMetrics:
 
     @staticmethod
     def wer(text_a,text_b):
+        '''returns WER (word error rate) between two documents'''
         return wer(text_a,text_b)
     
 
