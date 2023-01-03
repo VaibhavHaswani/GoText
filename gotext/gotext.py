@@ -85,12 +85,18 @@ class GoDocument:
         doc=self._text[dinx].split()
         return list(zip(*[doc[i:] for i in range(n)]))
 
+    @staticmethod
+    def gograms(text,n):
+        "text=string to find ngrams, n : no of grams"
+        doc=text.split()
+        return list(zip(*[doc[i:] for i in range(n)]))
+
 
 class GoMetrics:
     """GoMetrics Class provide variety of document similarity metrics for your experiments"""
 
     @staticmethod
-    def get_cosine(vec1, vec2):
+    def _get_cosine(vec1, vec2):
         intersection = set(vec1.keys()) & set(vec2.keys())
         numerator = sum([vec1[x] * vec2[x] for x in intersection])
 
@@ -104,7 +110,7 @@ class GoMetrics:
             return float(numerator) / denominator
             
     @staticmethod
-    def text_to_vector(text):
+    def _text_to_vector(text):
         WORD = re.compile(r"\w+")
         words = WORD.findall(text)
         return Counter(words)
@@ -125,10 +131,10 @@ class GoMetrics:
     @staticmethod
     def cosine_similarity(text_a,text_b):
         '''returns Cosine Similarity score of two texts'''
-        vector1 = GoMetrics.text_to_vector(text_a)
-        vector2 = GoMetrics.text_to_vector(text_b)
+        vector1 = GoMetrics._text_to_vector(text_a)
+        vector2 = GoMetrics._text_to_vector(text_b)
 
-        cosine = GoMetrics.get_cosine(vector1, vector2)
+        cosine = GoMetrics._get_cosine(vector1, vector2)
         return cosine
 
     @staticmethod

@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="gotext",
-    version="0.9",
+    version="1.0.1",
     author="Vaibhav Haswani",
     author_email="vaibhavhaswani@gmail.com",
     description="GoText is a universal text extraction and preprocessing tool for python which supportss wide variety of document formats.",
@@ -15,7 +15,7 @@ setuptools.setup(
     project_urls={
         "Bug Tracker": "https://github.com/VaibhavHaswani/GoText/issues",
     },
-    download_url = 'https://github.com/VaibhavHaswani/GoText/archive/refs/tags/v0.9.tar.gz',    # I explain this later on
+    download_url = 'https://github.com/VaibhavHaswani/GoText/archive/refs/tags/v1.0.1.tar.gz',    # I explain this later on
     keywords = ['text extraction','text preprocessing','document extraction','text utils'],   # Keywords that define your package best
     install_requires=[            # I get to this in a second
           'textract-plus',
